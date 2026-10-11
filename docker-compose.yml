@@ -1,0 +1,18 @@
+services:
+  postgres:
+    # Plain Postgres 16 for now. For the pgvector stretch goal, swap to:
+    #   image: pgvector/pgvector:pg16
+    # then: CREATE EXTENSION vector;
+    image: postgres:16-alpine
+    container_name: mcp-postgres
+    environment:
+      POSTGRES_DB: mcpdemo
+      POSTGRES_USER: mcpdemo
+      POSTGRES_PASSWORD: mcpdemo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
